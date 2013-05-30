@@ -93,7 +93,8 @@ if defined?(Typhoeus)
               :code         => webmock_response.status[0],
               :status_message => webmock_response.status[1],
               :body         => webmock_response.body,
-              :headers => webmock_response.headers
+              :headers => webmock_response.headers,
+              :response_headers => webmock_response.headers.reduce(""){|s, (k,v)| s+= "#{k}: #{v}\r\n" }
             )
           end
           response.mock = :webmock
